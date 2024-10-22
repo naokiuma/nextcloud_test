@@ -103,5 +103,5 @@ You can find documentation for more advanced features in [nextcloud-docker-dev d
 - Using HTTPS
 
 
-develp/helloworldの中でアプリテスト中・・・作成したらworkspace/server/apps-extraの中に配置する。<br>
+develp/helloworldの中でアプリテスト中・・・作成したらworkspace/server/apps-extra/の中に配置する。<br>
 詳細はこちらから https://nextcloud.com/developer/ <br>
