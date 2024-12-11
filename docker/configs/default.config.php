@@ -7,31 +7,31 @@ if (count($virtualHost) > 0) {
 	$hostname = array_shift($virtualHost);
 }
 
-$CONFIG=[
+$CONFIG = [
 	'debug' => true,
 	'profiler' => true,
-	'apps_paths' => 
-	array (
-		0 => 
-		array (
+	'apps_paths' =>
+	array(
+		0 =>
+		array(
 			'path' => '/var/www/html/apps',
 			'url' => '/apps',
 			'writable' => false,
 		),
-		1 => 
-		array (
+		1 =>
+		array(
 			'path' => '/var/www/html/apps-extra',
 			'url' => '/apps-extra',
 			'writable' => false,
 		),
-		2 => 
-		array (
+		2 =>
+		array(
 			'path' => '/var/www/html/apps-shared',
 			'url' => '/apps-shared',
 			'writable' => false,
 		),
 		3 =>
-		array (
+		array(
 			'path' => '/var/www/html/apps-writable',
 			'url' => '/apps-writable',
 			'writable' => true,
@@ -54,17 +54,17 @@ $CONFIG=[
 	'setup_create_db_user' => false,
 
 	'debug' => true,
-	'loglevel' => 2,
+	'loglevel' => 0,
 
 	// 'htaccess.RewriteBase' => '/',
 	'log_query' => false,
-	'query_log_file' => '/shared/log/querylog-' . $hostname .'.log',
+	'query_log_file' => '/shared/log/querylog-' . $hostname . '.log',
 	'query_log_file_requestid' => 'yes',
 
 	'diagnostics.logging' => false,
 	'diagnostics.logging.threshold' => 0,
 	'log.condition' => [
-        'apps' => ['diagnostics', 'admin_audit'],
+		'apps' => ['diagnostics', 'admin_audit'],
 	],
 ];
 
@@ -72,10 +72,10 @@ $CONFIG=[
 if ($primary === 'minio') {
 	$CONFIG += [
 		'objectstore' =>
-		array (
+		array(
 			'class' => 'OC\\Files\\ObjectStore\\S3',
 			'arguments' =>
-			array (
+			array(
 				'bucket' => 'nc-' . $hostname,
 				'key' => 'nextcloud',
 				'secret' => 'nextcloud',

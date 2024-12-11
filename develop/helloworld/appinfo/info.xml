@@ -23,4 +23,8 @@
 			<type>link</type>
 		</navigation>
 	</navigations>
+	<php>
+		<namespace>OCA\Helloworld</namespace>
+		<lib>lib</lib>
+	</php>
 </info>

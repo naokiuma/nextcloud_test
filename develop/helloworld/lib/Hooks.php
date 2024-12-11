@@ -1,7 +1,7 @@
 <?php
 // lib/Hooks.php
 
-namespace OCA\helloworld\lib;
+namespace OCA\Helloworld\lib;
 
 use OCP\Files\Node;
 use OCP\Files;
@@ -11,11 +11,18 @@ class Hooks {
 
     // フックの登録
     public static function register() {　
-        // ファイルがアップロードされた後のフック
+        // ファイルがアップロードされたときのフック
         \OCP\Util::connectHook('OC_Filesystem', 'post_create', 'OCA\helloworld\lib\Hooks', 'onFileUpload');
         // ファイルが削除された後のフック
         \OCP\Util::connectHook('OC_Filesystem', 'post_delete', 'OCA\helloworld\lib\Hooks', 'onFileDelete');
     }
+
+	// ファイル削除の処理
+	public static function onFileDownload(array $params) {
+		$path = $params['path'];
+		// ログにメッセージを出力
+		Util::writeLog('helloworld', "ファイルダウンロード！: $path", Util::INFO);
+	}
 
     // ファイルアップロードの処理
     public static function onFileUpload(array $params) {
@@ -35,4 +42,5 @@ class Hooks {
         // ログにメッセージを出力
         Util::writeLog('helloworld', "ファイル削除！: $path", Util::INFO);
     }
+
 }

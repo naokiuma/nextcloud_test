@@ -105,3 +105,15 @@ You can find documentation for more advanced features in [nextcloud-docker-dev d
 
 develp/helloworldの中でアプリテスト中・・・作成したらworkspace/server/apps-extra/の中に配置する。<br>
 詳細はこちらから https://nextcloud.com/developer/ <br>
+
+サイトアクセスはこちら<br>
+http://nextcloud.local/index.php/login
+
+## ログを確認する
+```bash	
+docker exec -it master_nextcloud_1 /bin/sh
+tail -f /var/www/html/data/nextcloud.log
+
+```
+
+app.phpになんらかのフックを登録する
