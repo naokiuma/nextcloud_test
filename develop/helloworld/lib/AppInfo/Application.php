@@ -12,12 +12,8 @@ use OCP\EventDispatcher\IEventDispatcher; //web記事の
 use OCA\Files\Event\LoadAdditionalScriptsEvent; //web記事の
 use OCA\Files_Sharing\Listener\BeforeDirectFileDownloadListener;
 use OCP\Util;
-use function OCP\Log\logger;
-
 
 use Psr\Log\LoggerInterface; // ロガーをインポート
-// use OCA\Helloworld\Event\AddEvent;
-// use OCA\Helloworld\Listener\AddTwoListener;
 use OCP\Files\Events\BeforeDirectFileDownloadEvent as EventsBeforeDirectFileDownloadEvent;
 
 
@@ -34,30 +30,22 @@ class Application extends App implements IBootstrap
 		parent::__construct(self::APP_ID);
 		// var_dump(self::APP_ID);//helloworldでてる！
 		$this->logger = $this->getContainer()->get(LoggerInterface::class);
-		// デバッグログ
 		$this->logger->info('Application コンストラクタ〜〜〜');
 
-		logger('helloworld')->info('look, no dependency injectionですぜ');
-		// $dispatcher->addListener(AddEvent::class, function (AddEvent $event) {
-		// 	$this->logger->info('Event triggeredだよ〜〜〜: ' . $event->getMessage());
-		// 	// Util::addscript(self::APP_ID, 'filesplugin', 'files');
-		// });
-
-
-	}
-
-	public function register(IRegistrationContext $context): void
-	{
 		//web記事のもの
 		//https://dev.to/daphnemuller/developing-with-nextcloud-part-2-developing-your-first-app-24h7
 		$container = $this->getContainer();
 		$eventDispatcher = $container->get(IEventDispatcher::class);
 		$eventDispatcher->addListener(LoadAdditionalScriptsEvent::class, function () {
+			$this->logger->info('LoadAdditionalScriptsEvent リスナーを登録します');
 			Util::addscript(self::APP_ID, 'filesplugin', 'files');
 		});
 
+		//EventsBeforeDirectFileDownloadEvent　を試そうとしたもの
 		$dispatcher = $this->getContainer()->get(IEventDispatcher::class);
 		$dispatcher->addListener(EventsBeforeDirectFileDownloadEvent::class, function (EventsBeforeDirectFileDownloadEvent $event) {
+
+			$this->logger->info('BeforeDirectFileDownloadEvent リスナーを登録します');
 			$filePath = $event->getPath();
 			// var_dump($filePath);
 			$this->logger->info('Before file downloadの時: ' . $filePath);
@@ -68,9 +56,7 @@ class Application extends App implements IBootstrap
 		});
 	}
 
-	public function boot(IBootContext $context): void
-	{
-		// $dispatcher = $this->getContainer()->get(IEventDispatcher::class);
-		// $dispatcher->dispatch(new AddEvent('Boot event triggeredですよ〜〜〜〜'));
-	}
+	public function register(IRegistrationContext $context): void {}
+
+	public function boot(IBootContext $context): void {}
 }
