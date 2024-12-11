@@ -33,16 +33,13 @@ $CONFIG = [
 	'SLAVEREPLICATION_AUTH' => 'slavefoobar',
 
 	// the list of remote replication servers that should be queried in the cronjob
-	'REPLICATION_HOSTS' => [
-	],
+	'REPLICATION_HOSTS' => [],
 
 	// ip black list. usefull to block spammers.
-	'IP_BLACKLIST' => [
-	],
+	'IP_BLACKLIST' => [],
 
 	// spam black list. usefull to block spammers.
-	'SPAM_BLACKLIST' => [
-	],
+	'SPAM_BLACKLIST' => [],
 
 	// Email sender address
 	'EMAIL_SENDER' => 'admin@nextcloud.dev',
@@ -56,7 +53,7 @@ $CONFIG = [
 	// auth token
 	'AUTH_KEY' => 'random-key',
 
-    // twitter oauth credentials, needed to perform twitter verification
+	// twitter oauth credentials, needed to perform twitter verification
 	'TWITTER' => [
 		'CONSUMER_KEY' => '',
 		'CONSUMER_SECRET' => '',
@@ -64,5 +61,3 @@ $CONFIG = [
 		'ACCESS_TOKEN_SECRET' => '',
 	]
 ];
-
-
