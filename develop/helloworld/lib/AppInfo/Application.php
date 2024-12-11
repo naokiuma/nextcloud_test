@@ -29,7 +29,7 @@ class Application extends App implements IBootstrap
 		parent::__construct(self::APP_ID);
 		// var_dump(self::APP_ID);//helloworldでてる！
 		$this->logger = $this->getContainer()->get(LoggerInterface::class);
-		$this->logger->info('Application コンストラクタ〜〜〜');
+		$this->logger->error('Application cunstructor----------------!!!!!!');
 	}
 
 	public function register(IRegistrationContext $context): void
@@ -43,7 +43,8 @@ class Application extends App implements IBootstrap
 		//検証１
 		//ファイル一覧ページにアクセス時にjsを読み込む。こちらはとおる。
 		$eventDispatcher->addListener(LoadAdditionalScriptsEvent::class, function () {
-			$this->logger->info('LoadAdditionalScriptsEvent リスナー1を登録します');
+			$this->logger->error('LoadAdditionalScriptsEvent add_listener1_subscribe----------------!!!!!!');
+			// var_dump('Application リスナー1を登録します');
 
 			Util::addscript(self::APP_ID, 'filesplugin', 'files');
 		});
@@ -53,11 +54,10 @@ class Application extends App implements IBootstrap
 		//EventsBeforeDirectFileDownloadEvent　を試そうとしたもの。通らない。
 		$eventDispatcher->addListener(BeforeDirectFileDownloadEvent::class, function (BeforeDirectFileDownloadEvent $event) {
 
-			$this->logger->info('BeforeDirectFileDownloadEvent リスナー2を登録します'); //これはでない
-			var_dump('Application リスナー2を登録します'); //これも出ない
+			$this->logger->error('BeforeDirectFileDownloadEvent add_listener2_subscribe--------!!!!!!'); //これはでない
 
 			$filePath = $event->getPath();
-			$this->logger->info('Before file downloadの時: ' . $filePath);
+			$this->logger->error('Before file download: ' . $filePath);
 
 			// ダウンロードの処理が開始される前に実行したいアクションを追加
 			// 例えば、ダウンロードを中止したい場合は
@@ -68,7 +68,7 @@ class Application extends App implements IBootstrap
 		//検証３
 		//MoveToTrashEvent　を試そうとしたもの。
 		$eventDispatcher->addListener(MoveToTrashEvent::class, function (MoveToTrashEvent $event) {
-			$this->logger->info('MoveToTrashEvent リスナー3を登録します');
+			$this->logger->error('MoveToTrashEvent add_listener3_subscribe---------!!!!!!!');
 
 			//以下を書くと削除時に反応はした！
 			//headers already sent by (output started at /var/www/html/apps-extra/helloworld/lib/AppInfo/Application.php:72) at /var/www/html/3rdparty/sabre/http/lib/Sapi.php#66"
